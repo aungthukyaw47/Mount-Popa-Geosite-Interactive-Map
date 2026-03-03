@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_0e72dd2c3b24dec00901469ad0dafc11 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-search@2.9.7/dist/leaflet-search.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-search@2.9.7/dist/leaflet-search.min.css"/>
+</head>
+<body>
+    
+    
+<div style="
+    position: fixed; 
+    bottom: 50px; left: 50px; width: 150px; height: auto; 
+    z-index:9999; font-size:14px;
+    background-color: white;
+    border:2px solid grey;
+    border-radius:6px;
+    padding: 10px;
+">
+<b>Legend</b><br>
+<i style="background:blue; width:12px; height:12px; float:left; margin-right:8px; opacity:0.9;"></i>Geological Site<br><i style="background:green; width:12px; height:12px; float:left; margin-right:8px; opacity:0.9;"></i>Biological Site<br><i style="background:orange; width:12px; height:12px; float:left; margin-right:8px; opacity:0.9;"></i>Cultural Site<br>
+</div>
+    
+            <div class="folium-map" id="map_0e72dd2c3b24dec00901469ad0dafc11" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_0e72dd2c3b24dec00901469ad0dafc11 = L.map(
+                "map_0e72dd2c3b24dec00901469ad0dafc11",
+                {
+                    center: [20.91677502413793, 95.21377066551725],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 8,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_0e72dd2c3b24dec00901469ad0dafc11);
+
+            
+
+        
+    
+            var tile_layer_796da0cf4a4976531aa8e29840fea9af = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "Esri World Imagery",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_796da0cf4a4976531aa8e29840fea9af.addTo(map_0e72dd2c3b24dec00901469ad0dafc11);
+        
+    
+            var tile_layer_563b204aa8a4af0b547b8e34e62f3db9 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_563b204aa8a4af0b547b8e34e62f3db9.addTo(map_0e72dd2c3b24dec00901469ad0dafc11);
+        
+    
+            var feature_group_31f1928ed4e45076909cb37c0c035b0f = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_68e67f8223aaffd6860a2de35352a0cf = L.circleMarker(
+                [20.9179743, 95.2563293],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_31f1928ed4e45076909cb37c0c035b0f);
+        
+    
+        var popup_555e80f20d41bf57be0788aad5abcf02 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d355581e91cd14493318453e5998741a = $(`<div id="html_d355581e91cd14493318453e5998741a" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Summit of Mount Popa<br><b>Category:</b> Geological Site</div>`)[0];
+                popup_555e80f20d41bf57be0788aad5abcf02.setContent(html_d355581e91cd14493318453e5998741a);
+            
+        
+
+        circle_marker_68e67f8223aaffd6860a2de35352a0cf.bindPopup(popup_555e80f20d41bf57be0788aad5abcf02)
+        ;
+
+        
+    
+    
+            var circle_marker_06bd4bea4bdc32a976210f92913405b4 = L.circleMarker(
+                [20.9181134, 95.1957994],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_31f1928ed4e45076909cb37c0c035b0f);
+        
+    
+        var popup_03e4ed81eccf2e87e7ba8782b70d0c05 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8d0ead3e76170b37a1363581ff89590e = $(`<div id="html_8d0ead3e76170b37a1363581ff89590e" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Alternated Layers of Volcanic Ash and Irrawaddy Sandstone<br><b>Category:</b> Geological Site</div>`)[0];
+                popup_03e4ed81eccf2e87e7ba8782b70d0c05.setContent(html_8d0ead3e76170b37a1363581ff89590e);
+            
+        
+
+        circle_marker_06bd4bea4bdc32a976210f92913405b4.bindPopup(popup_03e4ed81eccf2e87e7ba8782b70d0c05)
+        ;
+
+        
+    
+    
+            var circle_marker_dc8ba90d4256e59b9d66e4053cb2eb09 = L.circleMarker(
+                [20.9207699, 95.1949827],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_31f1928ed4e45076909cb37c0c035b0f);
+        
+    
+        var popup_3cf05defeac61b4a6bf79ecd4ec83228 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_bbc82519013b19494b95b72dbd81574c = $(`<div id="html_bbc82519013b19494b95b72dbd81574c" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Thone Htat Kway Pyroclastic Rocks<br><b>Category:</b> Geological Site</div>`)[0];
+                popup_3cf05defeac61b4a6bf79ecd4ec83228.setContent(html_bbc82519013b19494b95b72dbd81574c);
+            
+        
+
+        circle_marker_dc8ba90d4256e59b9d66e4053cb2eb09.bindPopup(popup_3cf05defeac61b4a6bf79ecd4ec83228)
+        ;
+
+        
+    
+    
+            var circle_marker_1f12f3aaaf600f0f9a19308695d15a4f = L.circleMarker(
+                [20.9166294, 95.1939228],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_31f1928ed4e45076909cb37c0c035b0f);
+        
+    
+        var popup_8543197b0ad6e5899eab58bf19252010 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_368254ab9e3c7693e07473cb12d64202 = $(`<div id="html_368254ab9e3c7693e07473cb12d64202" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Irrawaddy Formation<br><b>Category:</b> Geological Site</div>`)[0];
+                popup_8543197b0ad6e5899eab58bf19252010.setContent(html_368254ab9e3c7693e07473cb12d64202);
+            
+        
+
+        circle_marker_1f12f3aaaf600f0f9a19308695d15a4f.bindPopup(popup_8543197b0ad6e5899eab58bf19252010)
+        ;
+
+        
+    
+    
+            var circle_marker_fa969ab9bee966e2446732fc39d5edfe = L.circleMarker(
+                [20.7872807, 95.2559165],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_31f1928ed4e45076909cb37c0c035b0f);
+        
+    
+        var popup_8547daa533eb28b3aa771e32e432b9e2 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b986fa762ed5b618b7d06a7f533d6681 = $(`<div id="html_b986fa762ed5b618b7d06a7f533d6681" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Taung Ni Taung Chalcedony and Altered Clay Minerals<br><b>Category:</b> Geological Site</div>`)[0];
+                popup_8547daa533eb28b3aa771e32e432b9e2.setContent(html_b986fa762ed5b618b7d06a7f533d6681);
+            
+        
+
+        circle_marker_fa969ab9bee966e2446732fc39d5edfe.bindPopup(popup_8547daa533eb28b3aa771e32e432b9e2)
+        ;
+
+        
+    
+    
+            var circle_marker_d1bb68a79b7264541e0650486dbb39eb = L.circleMarker(
+                [20.9178722, 95.2144708],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_31f1928ed4e45076909cb37c0c035b0f);
+        
+    
+        var popup_1cd127e99e1485cb3b94c6bc338794ff = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_44737c3fdb4552e49227d49a8da79458 = $(`<div id="html_44737c3fdb4552e49227d49a8da79458" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Medicinal Plantation and Science Gallery<br><b>Category:</b> Biological Site</div>`)[0];
+                popup_1cd127e99e1485cb3b94c6bc338794ff.setContent(html_44737c3fdb4552e49227d49a8da79458);
+            
+        
+
+        circle_marker_d1bb68a79b7264541e0650486dbb39eb.bindPopup(popup_1cd127e99e1485cb3b94c6bc338794ff)
+        ;
+
+        
+    
+    
+            var circle_marker_baaf23c4fca10150b49a1a5d925777de = L.circleMarker(
+                [20.9231476, 95.2178355],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_31f1928ed4e45076909cb37c0c035b0f);
+        
+    
+        var popup_83d1f7454979f00a514300fd84b92182 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_eae3d945bb5f5f891e9d3a856be83f9c = $(`<div id="html_eae3d945bb5f5f891e9d3a856be83f9c" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Sandalwood Forest and Myanmar's Golden Deer Farm<br><b>Category:</b> Biological Site</div>`)[0];
+                popup_83d1f7454979f00a514300fd84b92182.setContent(html_eae3d945bb5f5f891e9d3a856be83f9c);
+            
+        
+
+        circle_marker_baaf23c4fca10150b49a1a5d925777de.bindPopup(popup_83d1f7454979f00a514300fd84b92182)
+        ;
+
+        
+    
+    
+            var circle_marker_5607108846b1e38498805f22e394e366 = L.circleMarker(
+                [20.9405239, 95.1621636],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_31f1928ed4e45076909cb37c0c035b0f);
+        
+    
+        var popup_a910ec4a5c3d1ca3762f9a9302b96c04 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_81a419f857c296971446af48413acf4c = $(`<div id="html_81a419f857c296971446af48413acf4c" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Birds' Nest Cliff<br><b>Category:</b> Biological Site</div>`)[0];
+                popup_a910ec4a5c3d1ca3762f9a9302b96c04.setContent(html_81a419f857c296971446af48413acf4c);
+            
+        
+
+        circle_marker_5607108846b1e38498805f22e394e366.bindPopup(popup_a910ec4a5c3d1ca3762f9a9302b96c04)
+        ;
+
+        
+    
+    
+            var circle_marker_98e58b30713f600b9cd80c61f0bd3850 = L.circleMarker(
+                [20.9497837, 95.1944347],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_31f1928ed4e45076909cb37c0c035b0f);
+        
+    
+        var popup_3d91c4ad0d0c24f7fb05d532bce30eb3 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b115d271bca9e577e11a0c802b457d7f = $(`<div id="html_b115d271bca9e577e11a0c802b457d7f" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Lava Plateau View Point<br><b>Category:</b> Geological Site</div>`)[0];
+                popup_3d91c4ad0d0c24f7fb05d532bce30eb3.setContent(html_b115d271bca9e577e11a0c802b457d7f);
+            
+        
+
+        circle_marker_98e58b30713f600b9cd80c61f0bd3850.bindPopup(popup_3d91c4ad0d0c24f7fb05d532bce30eb3)
+        ;
+
+        
+    
+    
+            var circle_marker_b8e23adfe1804e92e10eba82a946c75d = L.circleMarker(
+                [20.9528198, 95.2221854],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_31f1928ed4e45076909cb37c0c035b0f);
+        
+    
+        var popup_b462d1ebd878111f6fe9579aab57890b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_57d797fe364d3e9587264290f1e6639b = $(`<div id="html_57d797fe364d3e9587264290f1e6639b" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Basaltic Lava Flow<br><b>Category:</b> Geological Site</div>`)[0];
+                popup_b462d1ebd878111f6fe9579aab57890b.setContent(html_57d797fe364d3e9587264290f1e6639b);
+            
+        
+
+        circle_marker_b8e23adfe1804e92e10eba82a946c75d.bindPopup(popup_b462d1ebd878111f6fe9579aab57890b)
+        ;
+
+        
+    
+    
+            var circle_marker_fdec7b58a41b4020c1553ed6c05ac4dd = L.circleMarker(
+                [20.9301998, 95.2550898],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_31f1928ed4e45076909cb37c0c035b0f);
+        
+    
+        var popup_62d1c7d116cdd0cceb3248ed2905a67b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d1ec33e45d72a502143aca2ee59d7e3b = $(`<div id="html_d1ec33e45d72a502143aca2ee59d7e3b" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Taungpaw Taung Village's Scenic View<br><b>Category:</b> Geological Site</div>`)[0];
+                popup_62d1c7d116cdd0cceb3248ed2905a67b.setContent(html_d1ec33e45d72a502143aca2ee59d7e3b);
+            
+        
+
+        circle_marker_fdec7b58a41b4020c1553ed6c05ac4dd.bindPopup(popup_62d1c7d116cdd0cceb3248ed2905a67b)
+        ;
+
+        
+    
+    
+            var circle_marker_3cbffbade505d05f7ce5501e8a489142 = L.circleMarker(
+                [20.9026228, 95.2107198],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_31f1928ed4e45076909cb37c0c035b0f);
+        
+    
+        var popup_4823a8a0e6cc059ac8661a514c5cc2b4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0b7a4baffd7646b08327f38edfa86361 = $(`<div id="html_0b7a4baffd7646b08327f38edfa86361" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Popa Taungkalat Fossil Wood<br><b>Category:</b> Geological Site</div>`)[0];
+                popup_4823a8a0e6cc059ac8661a514c5cc2b4.setContent(html_0b7a4baffd7646b08327f38edfa86361);
+            
+        
+
+        circle_marker_3cbffbade505d05f7ce5501e8a489142.bindPopup(popup_4823a8a0e6cc059ac8661a514c5cc2b4)
+        ;
+
+        
+    
+    
+            var circle_marker_932472c3545e5d1bc7c420998f491256 = L.circleMarker(
+                [20.9396323, 95.1804154],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_31f1928ed4e45076909cb37c0c035b0f);
+        
+    
+        var popup_5c5dcb6988d6f76447f34d1e711bd9f0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c68d044a4d948bc0b448a086ea1d0d1c = $(`<div id="html_c68d044a4d948bc0b448a086ea1d0d1c" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Taungnar Taung View Point<br><b>Category:</b> Geological Site</div>`)[0];
+                popup_5c5dcb6988d6f76447f34d1e711bd9f0.setContent(html_c68d044a4d948bc0b448a086ea1d0d1c);
+            
+        
+
+        circle_marker_932472c3545e5d1bc7c420998f491256.bindPopup(popup_5c5dcb6988d6f76447f34d1e711bd9f0)
+        ;
+
+        
+    
+    
+            var circle_marker_15a242b11ca967a03b0b48e741969840 = L.circleMarker(
+                [20.9170078, 95.244695],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_31f1928ed4e45076909cb37c0c035b0f);
+        
+    
+        var popup_0bee540fe7d5ca46e140f5af9da7c7f8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4a915b03e408d52bd731281520167faf = $(`<div id="html_4a915b03e408d52bd731281520167faf" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Creater of Mount Popa<br><b>Category:</b> Geological Site</div>`)[0];
+                popup_0bee540fe7d5ca46e140f5af9da7c7f8.setContent(html_4a915b03e408d52bd731281520167faf);
+            
+        
+
+        circle_marker_15a242b11ca967a03b0b48e741969840.bindPopup(popup_0bee540fe7d5ca46e140f5af9da7c7f8)
+        ;
+
+        
+    
+    
+            var circle_marker_a30daf4204238ad20ce2cc1d0ae3061a = L.circleMarker(
+                [20.8554381, 95.2342973],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_31f1928ed4e45076909cb37c0c035b0f);
+        
+    
+        var popup_0df2e28bc711fc432b3b5809eb37df6b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5a66e6017a4298379de11e9f181f8608 = $(`<div id="html_5a66e6017a4298379de11e9f181f8608" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Gae Moe Aing<br><b>Category:</b> Geological Site</div>`)[0];
+                popup_0df2e28bc711fc432b3b5809eb37df6b.setContent(html_5a66e6017a4298379de11e9f181f8608);
+            
+        
+
+        circle_marker_a30daf4204238ad20ce2cc1d0ae3061a.bindPopup(popup_0df2e28bc711fc432b3b5809eb37df6b)
+        ;
+
+        
+    
+    
+            var circle_marker_7f59bab5cd8d3fa1a2d3b330436c2005 = L.circleMarker(
+                [20.9090989, 95.2022516],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_31f1928ed4e45076909cb37c0c035b0f);
+        
+    
+        var popup_f116e803f233a20bfc42c809bfda77d6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7a5914ff7c69b6d8d968023258c5168f = $(`<div id="html_7a5914ff7c69b6d8d968023258c5168f" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Kyauk Koe Pwint Taung<br><b>Category:</b> Geological Site</div>`)[0];
+                popup_f116e803f233a20bfc42c809bfda77d6.setContent(html_7a5914ff7c69b6d8d968023258c5168f);
+            
+        
+
+        circle_marker_7f59bab5cd8d3fa1a2d3b330436c2005.bindPopup(popup_f116e803f233a20bfc42c809bfda77d6)
+        ;
+
+        
+    
+    
+            var circle_marker_f1ab904cfe7095be2c62bef8e6f7176a = L.circleMarker(
+                [20.9102712, 95.2114663],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_31f1928ed4e45076909cb37c0c035b0f);
+        
+    
+        var popup_8c545f5fda8c76585d2e7933487a4433 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e62852abb0f605f26f9ce2706bd23c23 = $(`<div id="html_e62852abb0f605f26f9ce2706bd23c23" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Popa Taungkalat<br><b>Category:</b> Geological Site</div>`)[0];
+                popup_8c545f5fda8c76585d2e7933487a4433.setContent(html_e62852abb0f605f26f9ce2706bd23c23);
+            
+        
+
+        circle_marker_f1ab904cfe7095be2c62bef8e6f7176a.bindPopup(popup_8c545f5fda8c76585d2e7933487a4433)
+        ;
+
+        
+    
+    
+            var circle_marker_a6dccf65bf8526fca9bd3f0f8376855b = L.circleMarker(
+                [20.9101145, 95.1737314],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_31f1928ed4e45076909cb37c0c035b0f);
+        
+    
+        var popup_750296c12d7ca0834c6a8e99e8b33cad = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f2993e072dd589e2000d2777e6238142 = $(`<div id="html_f2993e072dd589e2000d2777e6238142" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Chaung Phyar Village's Ancient Iron Furnaces<br><b>Category:</b> Cultural Site</div>`)[0];
+                popup_750296c12d7ca0834c6a8e99e8b33cad.setContent(html_f2993e072dd589e2000d2777e6238142);
+            
+        
+
+        circle_marker_a6dccf65bf8526fca9bd3f0f8376855b.bindPopup(popup_750296c12d7ca0834c6a8e99e8b33cad)
+        ;
+
+        
+    
+    
+            var circle_marker_dd695babb86ee70d19f80de6cef6c057 = L.circleMarker(
+                [20.9087158, 95.1544028],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_31f1928ed4e45076909cb37c0c035b0f);
+        
+    
+        var popup_d99fdd28aadc9090deeab64d8f0c8258 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b967bc5f7b4845173bf619b8d13a3b11 = $(`<div id="html_b967bc5f7b4845173bf619b8d13a3b11" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Thanbo Ywarthit's Fossil Wood<br><b>Category:</b> Geological Site</div>`)[0];
+                popup_d99fdd28aadc9090deeab64d8f0c8258.setContent(html_b967bc5f7b4845173bf619b8d13a3b11);
+            
+        
+
+        circle_marker_dd695babb86ee70d19f80de6cef6c057.bindPopup(popup_d99fdd28aadc9090deeab64d8f0c8258)
+        ;
+
+        
+    
+    
+            var circle_marker_7d858a8d328a37a179ddfdee1dd9acfb = L.circleMarker(
+                [20.9409416, 95.1980164],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_31f1928ed4e45076909cb37c0c035b0f);
+        
+    
+        var popup_59a68902f33c0dc8741ba9b5c1945bd6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_955799d419bf46320d4a42606e4d0cf4 = $(`<div id="html_955799d419bf46320d4a42606e4d0cf4" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Linn Hotel Fossil Museum<br><b>Category:</b> Geological Site</div>`)[0];
+                popup_59a68902f33c0dc8741ba9b5c1945bd6.setContent(html_955799d419bf46320d4a42606e4d0cf4);
+            
+        
+
+        circle_marker_7d858a8d328a37a179ddfdee1dd9acfb.bindPopup(popup_59a68902f33c0dc8741ba9b5c1945bd6)
+        ;
+
+        
+    
+    
+            var circle_marker_3494e7aaa1fb4e9f61c03d2a089ef02b = L.circleMarker(
+                [20.9540635, 95.1994002],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_31f1928ed4e45076909cb37c0c035b0f);
+        
+    
+        var popup_78637fffb4b372204a1e31786928ef4d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_770fdbbed74e0059204f82b6e64a252b = $(`<div id="html_770fdbbed74e0059204f82b6e64a252b" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Shwe Twin Taung - Ngwe Twin Taung View Point<br><b>Category:</b> Geological Site</div>`)[0];
+                popup_78637fffb4b372204a1e31786928ef4d.setContent(html_770fdbbed74e0059204f82b6e64a252b);
+            
+        
+
+        circle_marker_3494e7aaa1fb4e9f61c03d2a089ef02b.bindPopup(popup_78637fffb4b372204a1e31786928ef4d)
+        ;
+
+        
+    
+    
+            var circle_marker_701b67cd8294312f3465f617c3823ba4 = L.circleMarker(
+                [20.9351139, 95.1848871],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_31f1928ed4e45076909cb37c0c035b0f);
+        
+    
+        var popup_c7a3fa5bec257b0828d269faa1bbfb7d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_05f69a85d0d2542c7b8911846082bbe6 = $(`<div id="html_05f69a85d0d2542c7b8911846082bbe6" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Royal Elephant Camp<br><b>Category:</b> Geological Site</div>`)[0];
+                popup_c7a3fa5bec257b0828d269faa1bbfb7d.setContent(html_05f69a85d0d2542c7b8911846082bbe6);
+            
+        
+
+        circle_marker_701b67cd8294312f3465f617c3823ba4.bindPopup(popup_c7a3fa5bec257b0828d269faa1bbfb7d)
+        ;
+
+        
+    
+    
+            var circle_marker_b3232a1cd5071c441b24afdd454a5b5b = L.circleMarker(
+                [20.8074191, 95.2442013],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_31f1928ed4e45076909cb37c0c035b0f);
+        
+    
+        var popup_790dab110102e4592b4f41f9622bd600 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_46302daeb9604c5ffba39fde61093afb = $(`<div id="html_46302daeb9604c5ffba39fde61093afb" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Kyatmauktaung Dam's Scenic View Point<br><b>Category:</b> Geological Site</div>`)[0];
+                popup_790dab110102e4592b4f41f9622bd600.setContent(html_46302daeb9604c5ffba39fde61093afb);
+            
+        
+
+        circle_marker_b3232a1cd5071c441b24afdd454a5b5b.bindPopup(popup_790dab110102e4592b4f41f9622bd600)
+        ;
+
+        
+    
+    
+            var circle_marker_b1e75583b04698d621e8badc6d6115c8 = L.circleMarker(
+                [20.8516838, 95.1588157],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_31f1928ed4e45076909cb37c0c035b0f);
+        
+    
+        var popup_4fe161e31cf6f2d40eb0d79871510eac = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_060ec9e0d20178a8f1440518a689da3d = $(`<div id="html_060ec9e0d20178a8f1440518a689da3d" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Taung Nauk Taung<br><b>Category:</b> Geological Site</div>`)[0];
+                popup_4fe161e31cf6f2d40eb0d79871510eac.setContent(html_060ec9e0d20178a8f1440518a689da3d);
+            
+        
+
+        circle_marker_b1e75583b04698d621e8badc6d6115c8.bindPopup(popup_4fe161e31cf6f2d40eb0d79871510eac)
+        ;
+
+        
+    
+    
+            var circle_marker_266b5c0917f765c592ade4f8458d3b5c = L.circleMarker(
+                [20.8981179, 95.1895692],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_31f1928ed4e45076909cb37c0c035b0f);
+        
+    
+        var popup_44a78fa912fc11ce6d6798316d4ce539 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_da48111dbaa74399754428b69bc9b90b = $(`<div id="html_da48111dbaa74399754428b69bc9b90b" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Popa Tuff<br><b>Category:</b> Geological Site</div>`)[0];
+                popup_44a78fa912fc11ce6d6798316d4ce539.setContent(html_da48111dbaa74399754428b69bc9b90b);
+            
+        
+
+        circle_marker_266b5c0917f765c592ade4f8458d3b5c.bindPopup(popup_44a78fa912fc11ce6d6798316d4ce539)
+        ;
+
+        
+    
+    
+            var circle_marker_14155a5985eddc195dc53f34e65516c5 = L.circleMarker(
+                [20.9561642, 95.2440098],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_31f1928ed4e45076909cb37c0c035b0f);
+        
+    
+        var popup_dcd9795787742b670dd19612a4eb110f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_cadd6ba30077c579da2cc0c1960f21ce = $(`<div id="html_cadd6ba30077c579da2cc0c1960f21ce" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Taungpaw Myauk Village View Point<br><b>Category:</b> Geological Site</div>`)[0];
+                popup_dcd9795787742b670dd19612a4eb110f.setContent(html_cadd6ba30077c579da2cc0c1960f21ce);
+            
+        
+
+        circle_marker_14155a5985eddc195dc53f34e65516c5.bindPopup(popup_dcd9795787742b670dd19612a4eb110f)
+        ;
+
+        
+    
+    
+            var circle_marker_93ea952859ceb79c6701bf3d4dbbfe26 = L.circleMarker(
+                [20.9610619, 95.2499282],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_31f1928ed4e45076909cb37c0c035b0f);
+        
+    
+        var popup_1e9900516b115210ad665059b245e517 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d6ba96e48a4ef919b3f48f3d2bf20888 = $(`<div id="html_d6ba96e48a4ef919b3f48f3d2bf20888" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Myauktaw Village View Point<br><b>Category:</b> Geological Site</div>`)[0];
+                popup_1e9900516b115210ad665059b245e517.setContent(html_d6ba96e48a4ef919b3f48f3d2bf20888);
+            
+        
+
+        circle_marker_93ea952859ceb79c6701bf3d4dbbfe26.bindPopup(popup_1e9900516b115210ad665059b245e517)
+        ;
+
+        
+    
+    
+            var circle_marker_15369897361ae6b7483eea916360eacf = L.circleMarker(
+                [20.9959411, 95.2605668],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_31f1928ed4e45076909cb37c0c035b0f);
+        
+    
+        var popup_046f9d7b23f4c4ea843dd643ec415f74 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_67c9ba9f280267e8382d5558dd1a0432 = $(`<div id="html_67c9ba9f280267e8382d5558dd1a0432" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Augite - Andesite Volcanic Stones<br><b>Category:</b> Geological Site</div>`)[0];
+                popup_046f9d7b23f4c4ea843dd643ec415f74.setContent(html_67c9ba9f280267e8382d5558dd1a0432);
+            
+        
+
+        circle_marker_15369897361ae6b7483eea916360eacf.bindPopup(popup_046f9d7b23f4c4ea843dd643ec415f74)
+        ;
+
+        
+    
+    
+            var circle_marker_1a17d2a62c1b27b2093d3b4e3da74841 = L.circleMarker(
+                [20.9579526, 95.2948445],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_31f1928ed4e45076909cb37c0c035b0f);
+        
+    
+        var popup_86e015cb4f4c5164293ecb6ad5a5c6be = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_921373d85b12411ad79b6aff61107ddc = $(`<div id="html_921373d85b12411ad79b6aff61107ddc" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Pyroclastic Flow<br><b>Category:</b> Geological Site</div>`)[0];
+                popup_86e015cb4f4c5164293ecb6ad5a5c6be.setContent(html_921373d85b12411ad79b6aff61107ddc);
+            
+        
+
+        circle_marker_1a17d2a62c1b27b2093d3b4e3da74841.bindPopup(popup_86e015cb4f4c5164293ecb6ad5a5c6be)
+        ;
+
+        
+    
+    
+            feature_group_31f1928ed4e45076909cb37c0c035b0f.addTo(map_0e72dd2c3b24dec00901469ad0dafc11);
+        
+    
+            var feature_group_31f1928ed4e45076909cb37c0c035b0fsearchControl = new L.Control.Search({
+                layer: feature_group_31f1928ed4e45076909cb37c0c035b0f,
+                
+                propertyName: 'Name',
+                
+                collapsed: false,
+                textPlaceholder: 'Search location...',
+                position:'topleft',
+            
+                initial: false,
+                
+                hideMarkerOnCollapse: true
+            
+                });
+                feature_group_31f1928ed4e45076909cb37c0c035b0fsearchControl.on('search:locationfound', function(e) {
+                    feature_group_31f1928ed4e45076909cb37c0c035b0f.setStyle(function(feature){
+                        return feature.properties.style
+                    })
+                    
+                    if(e.layer._popup)
+                        e.layer.openPopup();
+                })
+                feature_group_31f1928ed4e45076909cb37c0c035b0fsearchControl.on('search:collapsed', function(e) {
+                        feature_group_31f1928ed4e45076909cb37c0c035b0f.setStyle(function(feature){
+                            return feature.properties.style
+                    });
+                });
+            map_0e72dd2c3b24dec00901469ad0dafc11.addControl( feature_group_31f1928ed4e45076909cb37c0c035b0fsearchControl );
+
+        
+    
+            var layer_control_fc3a09130d0494fd953a946af3db6138_layers = {
+                base_layers : {
+                    "Satellite" : tile_layer_796da0cf4a4976531aa8e29840fea9af,
+                    "openstreetmap" : tile_layer_563b204aa8a4af0b547b8e34e62f3db9,
+                },
+                overlays :  {
+                    "Points" : feature_group_31f1928ed4e45076909cb37c0c035b0f,
+                },
+            };
+            let layer_control_fc3a09130d0494fd953a946af3db6138 = L.control.layers(
+                layer_control_fc3a09130d0494fd953a946af3db6138_layers.base_layers,
+                layer_control_fc3a09130d0494fd953a946af3db6138_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": true,
+  "autoZIndex": true,
+}
+            ).addTo(map_0e72dd2c3b24dec00901469ad0dafc11);
+
+        
+</script>
+</html>
