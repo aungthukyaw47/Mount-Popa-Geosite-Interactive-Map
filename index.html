@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_f709ba9beacba81d67a36d9e29d6e3ac {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-search@2.9.7/dist/leaflet-search.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-search@2.9.7/dist/leaflet-search.min.css"/>
+</head>
+<body>
+    
+    
+<div style="
+    position: fixed;
+    bottom: 50px; left: 50px; width: 150px; height: auto;
+    z-index:9999; font-size:14px;
+    background-color: white;
+    border:2px solid grey;
+    border-radius:6px;
+    padding: 10px;
+">
+<b>Legend</b><br>
+<i style="background:blue; width:12px; height:12px; float:left; margin-right:8px; opacity:0.9;"></i>Geological Site<br><i style="background:green; width:12px; height:12px; float:left; margin-right:8px; opacity:0.9;"></i>Biological Site<br><i style="background:orange; width:12px; height:12px; float:left; margin-right:8px; opacity:0.9;"></i>Cultural Site<br>
+</div>
+    
+            <div class="folium-map" id="map_f709ba9beacba81d67a36d9e29d6e3ac" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_f709ba9beacba81d67a36d9e29d6e3ac = L.map(
+                "map_f709ba9beacba81d67a36d9e29d6e3ac",
+                {
+                    center: [20.91677502413793, 95.21377066551725],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 8,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_f709ba9beacba81d67a36d9e29d6e3ac);
+
+            
+
+        
+    
+            var tile_layer_22dbfe631d80c973ca742d41e8498d40 = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "Esri World Imagery",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_22dbfe631d80c973ca742d41e8498d40.addTo(map_f709ba9beacba81d67a36d9e29d6e3ac);
+        
+    
+            var tile_layer_38c922d12fea3fd0596a11a51cd4ddbf = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_38c922d12fea3fd0596a11a51cd4ddbf.addTo(map_f709ba9beacba81d67a36d9e29d6e3ac);
+        
+    
+            var feature_group_da9d7a95815793f3163c90f353d25604 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_95ebfd897a8e77b82a32e4d7a3cab3bd = L.circleMarker(
+                [20.9179743, 95.2563293],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_da9d7a95815793f3163c90f353d25604);
+        
+    
+        var popup_ccd9744ab898bffdc5d337b11160f59d = L.popup({
+  "maxWidth": 800,
+});
+
+        
+            
+                var html_434c00fc4d3979872fcf4339ea33f6e5 = $(`<div id="html_434c00fc4d3979872fcf4339ea33f6e5" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Summit of Mount Popa</div>`)[0];
+                popup_ccd9744ab898bffdc5d337b11160f59d.setContent(html_434c00fc4d3979872fcf4339ea33f6e5);
+            
+        
+
+        circle_marker_95ebfd897a8e77b82a32e4d7a3cab3bd.bindPopup(popup_ccd9744ab898bffdc5d337b11160f59d)
+        ;
+
+        
+    
+    
+            var circle_marker_16a17b09e4abc02f32abd670203234db = L.circleMarker(
+                [20.9181134, 95.1957994],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_da9d7a95815793f3163c90f353d25604);
+        
+    
+        var popup_668f27c62acf86c18be4955eabaaeb1c = L.popup({
+  "maxWidth": 800,
+});
+
+        
+            
+                var html_01fadd4584d02144383b62427096521e = $(`<div id="html_01fadd4584d02144383b62427096521e" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Alternated Layers of Volcanic Ash and Irrawaddy Sandstone</div>`)[0];
+                popup_668f27c62acf86c18be4955eabaaeb1c.setContent(html_01fadd4584d02144383b62427096521e);
+            
+        
+
+        circle_marker_16a17b09e4abc02f32abd670203234db.bindPopup(popup_668f27c62acf86c18be4955eabaaeb1c)
+        ;
+
+        
+    
+    
+            var circle_marker_6ed8fba84c5ca5efb2c6930da2c36dac = L.circleMarker(
+                [20.9207699, 95.1949827],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_da9d7a95815793f3163c90f353d25604);
+        
+    
+        var popup_d340d49ad6aa938e2ec72043600712c2 = L.popup({
+  "maxWidth": 800,
+});
+
+        
+            
+                var html_bbc90ed3efc5b26aa120bc19573cce87 = $(`<div id="html_bbc90ed3efc5b26aa120bc19573cce87" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Thone Htat Kway Pyroclastic Rocks</div>`)[0];
+                popup_d340d49ad6aa938e2ec72043600712c2.setContent(html_bbc90ed3efc5b26aa120bc19573cce87);
+            
+        
+
+        circle_marker_6ed8fba84c5ca5efb2c6930da2c36dac.bindPopup(popup_d340d49ad6aa938e2ec72043600712c2)
+        ;
+
+        
+    
+    
+            var circle_marker_8db5adb72ab1b47dbee628ebb0558d5c = L.circleMarker(
+                [20.9166294, 95.1939228],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_da9d7a95815793f3163c90f353d25604);
+        
+    
+        var popup_a14f707933405ec38933c32e4875ab97 = L.popup({
+  "maxWidth": 800,
+});
+
+        
+            
+                var html_fa2ca3e3ee16348faf07df05c5175aea = $(`<div id="html_fa2ca3e3ee16348faf07df05c5175aea" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Irrawaddy Formation</div>`)[0];
+                popup_a14f707933405ec38933c32e4875ab97.setContent(html_fa2ca3e3ee16348faf07df05c5175aea);
+            
+        
+
+        circle_marker_8db5adb72ab1b47dbee628ebb0558d5c.bindPopup(popup_a14f707933405ec38933c32e4875ab97)
+        ;
+
+        
+    
+    
+            var circle_marker_dc94606c748fcc1a7592d37f58f5503f = L.circleMarker(
+                [20.7872807, 95.2559165],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_da9d7a95815793f3163c90f353d25604);
+        
+    
+        var popup_2295ae4bfe1b7c170ebc68dbaec7ab87 = L.popup({
+  "maxWidth": 800,
+});
+
+        
+            
+                var html_301c240d09c494a51ebec8a52d4dc31f = $(`<div id="html_301c240d09c494a51ebec8a52d4dc31f" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Taung Ni Taung Chalcedony and Altered Clay Minerals</div>`)[0];
+                popup_2295ae4bfe1b7c170ebc68dbaec7ab87.setContent(html_301c240d09c494a51ebec8a52d4dc31f);
+            
+        
+
+        circle_marker_dc94606c748fcc1a7592d37f58f5503f.bindPopup(popup_2295ae4bfe1b7c170ebc68dbaec7ab87)
+        ;
+
+        
+    
+    
+            var circle_marker_ff83876376e3569d6d8f94f5df4a1781 = L.circleMarker(
+                [20.9178722, 95.2144708],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_da9d7a95815793f3163c90f353d25604);
+        
+    
+        var popup_09e7fc49d458b1b4daab7695f0371410 = L.popup({
+  "maxWidth": 800,
+});
+
+        
+            
+                var html_5c28372f0366550a347f5ddcac4c0a89 = $(`<div id="html_5c28372f0366550a347f5ddcac4c0a89" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Medicinal Plantation and Science Gallery</div>`)[0];
+                popup_09e7fc49d458b1b4daab7695f0371410.setContent(html_5c28372f0366550a347f5ddcac4c0a89);
+            
+        
+
+        circle_marker_ff83876376e3569d6d8f94f5df4a1781.bindPopup(popup_09e7fc49d458b1b4daab7695f0371410)
+        ;
+
+        
+    
+    
+            var circle_marker_00cba5de1df11eb5f49ce95972b57124 = L.circleMarker(
+                [20.9231476, 95.2178355],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_da9d7a95815793f3163c90f353d25604);
+        
+    
+        var popup_c818e72c6febeb57c94c3bc6f3e616fc = L.popup({
+  "maxWidth": 800,
+});
+
+        
+            
+                var html_e258407fece682b451b27bdb5d12cb95 = $(`<div id="html_e258407fece682b451b27bdb5d12cb95" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Sandalwood Forest and Myanmar's Golden Deer Farm</div>`)[0];
+                popup_c818e72c6febeb57c94c3bc6f3e616fc.setContent(html_e258407fece682b451b27bdb5d12cb95);
+            
+        
+
+        circle_marker_00cba5de1df11eb5f49ce95972b57124.bindPopup(popup_c818e72c6febeb57c94c3bc6f3e616fc)
+        ;
+
+        
+    
+    
+            var circle_marker_49f1f4204c0635a2c5506b0f63ed820f = L.circleMarker(
+                [20.9405239, 95.1621636],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_da9d7a95815793f3163c90f353d25604);
+        
+    
+        var popup_a463ffb57ca83aa66e36bd8d43ddcb30 = L.popup({
+  "maxWidth": 800,
+});
+
+        
+            
+                var html_d42c99a9049d321128c43171e7db826e = $(`<div id="html_d42c99a9049d321128c43171e7db826e" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Birds' Nest Cliff</div>`)[0];
+                popup_a463ffb57ca83aa66e36bd8d43ddcb30.setContent(html_d42c99a9049d321128c43171e7db826e);
+            
+        
+
+        circle_marker_49f1f4204c0635a2c5506b0f63ed820f.bindPopup(popup_a463ffb57ca83aa66e36bd8d43ddcb30)
+        ;
+
+        
+    
+    
+            var circle_marker_265ea7bb99fa089d22e71139570c24ca = L.circleMarker(
+                [20.9497837, 95.1944347],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_da9d7a95815793f3163c90f353d25604);
+        
+    
+        var popup_b2f2236b74015a3ad0399f5262c817f0 = L.popup({
+  "maxWidth": 800,
+});
+
+        
+            
+                var html_dc0c5e44ebb23bc97ebc6c42377c9ca7 = $(`<div id="html_dc0c5e44ebb23bc97ebc6c42377c9ca7" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Lava Plateau View Point</div>`)[0];
+                popup_b2f2236b74015a3ad0399f5262c817f0.setContent(html_dc0c5e44ebb23bc97ebc6c42377c9ca7);
+            
+        
+
+        circle_marker_265ea7bb99fa089d22e71139570c24ca.bindPopup(popup_b2f2236b74015a3ad0399f5262c817f0)
+        ;
+
+        
+    
+    
+            var circle_marker_3533b2b62ca32383d5d8d20542604251 = L.circleMarker(
+                [20.9528198, 95.2221854],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_da9d7a95815793f3163c90f353d25604);
+        
+    
+        var popup_7e42c1a0ae7117792b7360b2e370be29 = L.popup({
+  "maxWidth": 800,
+});
+
+        
+            
+                var html_5501099f0a7eda155e4bfc4dcbb9984c = $(`<div id="html_5501099f0a7eda155e4bfc4dcbb9984c" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Basaltic Lava Flow</div>`)[0];
+                popup_7e42c1a0ae7117792b7360b2e370be29.setContent(html_5501099f0a7eda155e4bfc4dcbb9984c);
+            
+        
+
+        circle_marker_3533b2b62ca32383d5d8d20542604251.bindPopup(popup_7e42c1a0ae7117792b7360b2e370be29)
+        ;
+
+        
+    
+    
+            var circle_marker_f9da00b2c365f02099a56151ba6f9cee = L.circleMarker(
+                [20.9301998, 95.2550898],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_da9d7a95815793f3163c90f353d25604);
+        
+    
+        var popup_83505c9cff99473dc22d74c330a2f93f = L.popup({
+  "maxWidth": 800,
+});
+
+        
+            
+                var html_c1494b9157e6ca086c908d48c7a901a6 = $(`<div id="html_c1494b9157e6ca086c908d48c7a901a6" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Taungpaw Taung Village's Scenic View</div>`)[0];
+                popup_83505c9cff99473dc22d74c330a2f93f.setContent(html_c1494b9157e6ca086c908d48c7a901a6);
+            
+        
+
+        circle_marker_f9da00b2c365f02099a56151ba6f9cee.bindPopup(popup_83505c9cff99473dc22d74c330a2f93f)
+        ;
+
+        
+    
+    
+            var circle_marker_4acbd885ec49f90979156241aec12943 = L.circleMarker(
+                [20.9026228, 95.2107198],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_da9d7a95815793f3163c90f353d25604);
+        
+    
+        var popup_65081c2dbc3bac0a2c0b4a78387822dc = L.popup({
+  "maxWidth": 800,
+});
+
+        
+            
+                var html_a0e811d43d87af5b81f9d151e07964eb = $(`<div id="html_a0e811d43d87af5b81f9d151e07964eb" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Popa Taungkalat Fossil Wood</div>`)[0];
+                popup_65081c2dbc3bac0a2c0b4a78387822dc.setContent(html_a0e811d43d87af5b81f9d151e07964eb);
+            
+        
+
+        circle_marker_4acbd885ec49f90979156241aec12943.bindPopup(popup_65081c2dbc3bac0a2c0b4a78387822dc)
+        ;
+
+        
+    
+    
+            var circle_marker_052db27da97acc9d1ae1c06aabd826a4 = L.circleMarker(
+                [20.9396323, 95.1804154],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_da9d7a95815793f3163c90f353d25604);
+        
+    
+        var popup_6005fcc9c40bbef8b7d95608deac9153 = L.popup({
+  "maxWidth": 800,
+});
+
+        
+            
+                var html_6be07bc44cbec804e71662e840786810 = $(`<div id="html_6be07bc44cbec804e71662e840786810" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Taungnar Taung View Point</div>`)[0];
+                popup_6005fcc9c40bbef8b7d95608deac9153.setContent(html_6be07bc44cbec804e71662e840786810);
+            
+        
+
+        circle_marker_052db27da97acc9d1ae1c06aabd826a4.bindPopup(popup_6005fcc9c40bbef8b7d95608deac9153)
+        ;
+
+        
+    
+    
+            var circle_marker_a9b91dd5f21c84a93af5ceb17dffe92c = L.circleMarker(
+                [20.9170078, 95.244695],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_da9d7a95815793f3163c90f353d25604);
+        
+    
+        var popup_2fcc754ffd02442156573f3547091835 = L.popup({
+  "maxWidth": 800,
+});
+
+        
+            
+                var html_397aaa60900149af05ef5f7d8bd55e21 = $(`<div id="html_397aaa60900149af05ef5f7d8bd55e21" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Creater of Mount Popa</div>`)[0];
+                popup_2fcc754ffd02442156573f3547091835.setContent(html_397aaa60900149af05ef5f7d8bd55e21);
+            
+        
+
+        circle_marker_a9b91dd5f21c84a93af5ceb17dffe92c.bindPopup(popup_2fcc754ffd02442156573f3547091835)
+        ;
+
+        
+    
+    
+            var circle_marker_b42284e54be7cb3fa902beacd6a4da23 = L.circleMarker(
+                [20.8554381, 95.2342973],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_da9d7a95815793f3163c90f353d25604);
+        
+    
+        var popup_df4b65734a5697d4e611d6269be18b67 = L.popup({
+  "maxWidth": 800,
+});
+
+        
+            
+                var html_e88bca17b4deaceb4e0b4bdc8dbbd1e3 = $(`<div id="html_e88bca17b4deaceb4e0b4bdc8dbbd1e3" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Gae Moe Aing</div>`)[0];
+                popup_df4b65734a5697d4e611d6269be18b67.setContent(html_e88bca17b4deaceb4e0b4bdc8dbbd1e3);
+            
+        
+
+        circle_marker_b42284e54be7cb3fa902beacd6a4da23.bindPopup(popup_df4b65734a5697d4e611d6269be18b67)
+        ;
+
+        
+    
+    
+            var circle_marker_272ac968c129a3bc9a864d31c6042538 = L.circleMarker(
+                [20.9090989, 95.2022516],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_da9d7a95815793f3163c90f353d25604);
+        
+    
+        var popup_70980367dfedcf023ad518fcf78ea790 = L.popup({
+  "maxWidth": 800,
+});
+
+        
+            
+                var html_fee1b62259883a540c09ba12e8cb4c1b = $(`<div id="html_fee1b62259883a540c09ba12e8cb4c1b" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Kyauk Koe Pwint Taung</div>`)[0];
+                popup_70980367dfedcf023ad518fcf78ea790.setContent(html_fee1b62259883a540c09ba12e8cb4c1b);
+            
+        
+
+        circle_marker_272ac968c129a3bc9a864d31c6042538.bindPopup(popup_70980367dfedcf023ad518fcf78ea790)
+        ;
+
+        
+    
+    
+            var circle_marker_dfa3ca8105a7352729a9041a37d0ec44 = L.circleMarker(
+                [20.9102712, 95.2114663],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_da9d7a95815793f3163c90f353d25604);
+        
+    
+        var popup_21f53ba6f3ba32ce57619222c8b5cbd0 = L.popup({
+  "maxWidth": 800,
+});
+
+        
+            
+                var html_a4e103098616912f58e8e96c1c83c737 = $(`<div id="html_a4e103098616912f58e8e96c1c83c737" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Popa Taungkalat</div>`)[0];
+                popup_21f53ba6f3ba32ce57619222c8b5cbd0.setContent(html_a4e103098616912f58e8e96c1c83c737);
+            
+        
+
+        circle_marker_dfa3ca8105a7352729a9041a37d0ec44.bindPopup(popup_21f53ba6f3ba32ce57619222c8b5cbd0)
+        ;
+
+        
+    
+    
+            var circle_marker_4919211cd8d74edaf405f096afc45a11 = L.circleMarker(
+                [20.9101145, 95.1737314],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_da9d7a95815793f3163c90f353d25604);
+        
+    
+        var popup_a47ed4150eced3bf9df49b7b33026ec6 = L.popup({
+  "maxWidth": 800,
+});
+
+        
+            
+                var html_6bc865cd7bbf45202ad81d5ab2a3d798 = $(`<div id="html_6bc865cd7bbf45202ad81d5ab2a3d798" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Chaung Phyar Village's Ancient Iron Furnaces</div>`)[0];
+                popup_a47ed4150eced3bf9df49b7b33026ec6.setContent(html_6bc865cd7bbf45202ad81d5ab2a3d798);
+            
+        
+
+        circle_marker_4919211cd8d74edaf405f096afc45a11.bindPopup(popup_a47ed4150eced3bf9df49b7b33026ec6)
+        ;
+
+        
+    
+    
+            var circle_marker_b0ba3d7f886dbaac0d6d6451a1a3aa54 = L.circleMarker(
+                [20.9087158, 95.1544028],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_da9d7a95815793f3163c90f353d25604);
+        
+    
+        var popup_59e9006eb056808b5e176c2f9117783e = L.popup({
+  "maxWidth": 800,
+});
+
+        
+            
+                var html_5fd402d8cbebb000d17749ed54638e46 = $(`<div id="html_5fd402d8cbebb000d17749ed54638e46" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Thanbo Ywarthit's Fossil Wood</div>`)[0];
+                popup_59e9006eb056808b5e176c2f9117783e.setContent(html_5fd402d8cbebb000d17749ed54638e46);
+            
+        
+
+        circle_marker_b0ba3d7f886dbaac0d6d6451a1a3aa54.bindPopup(popup_59e9006eb056808b5e176c2f9117783e)
+        ;
+
+        
+    
+    
+            var circle_marker_7028f8f3038f102e77ab42bbe4fed87c = L.circleMarker(
+                [20.9409416, 95.1980164],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_da9d7a95815793f3163c90f353d25604);
+        
+    
+        var popup_de4e378a80966bdc04996724f7897fbb = L.popup({
+  "maxWidth": 800,
+});
+
+        
+            
+                var html_dc2a1ad74b16bdfed9c84b1b33792965 = $(`<div id="html_dc2a1ad74b16bdfed9c84b1b33792965" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Linn Hotel Fossil Museum</div>`)[0];
+                popup_de4e378a80966bdc04996724f7897fbb.setContent(html_dc2a1ad74b16bdfed9c84b1b33792965);
+            
+        
+
+        circle_marker_7028f8f3038f102e77ab42bbe4fed87c.bindPopup(popup_de4e378a80966bdc04996724f7897fbb)
+        ;
+
+        
+    
+    
+            var circle_marker_3a05e1c9634d1ab11ac465d525dc5d91 = L.circleMarker(
+                [20.9540635, 95.1994002],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_da9d7a95815793f3163c90f353d25604);
+        
+    
+        var popup_e13f41941cc45f48760de8f8c800343e = L.popup({
+  "maxWidth": 800,
+});
+
+        
+            
+                var html_6c206f596b0f78d317e00681b11e2198 = $(`<div id="html_6c206f596b0f78d317e00681b11e2198" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Shwe Twin Taung - Ngwe Twin Taung View Point</div>`)[0];
+                popup_e13f41941cc45f48760de8f8c800343e.setContent(html_6c206f596b0f78d317e00681b11e2198);
+            
+        
+
+        circle_marker_3a05e1c9634d1ab11ac465d525dc5d91.bindPopup(popup_e13f41941cc45f48760de8f8c800343e)
+        ;
+
+        
+    
+    
+            var circle_marker_47b1e8b909370dd9b739ecb683c06d1e = L.circleMarker(
+                [20.9351139, 95.1848871],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_da9d7a95815793f3163c90f353d25604);
+        
+    
+        var popup_f4eb0efa8fd7b51fc94ae4d9d26068ca = L.popup({
+  "maxWidth": 800,
+});
+
+        
+            
+                var html_ca3d1f3c97129f4ba8d8f2af6566f4e0 = $(`<div id="html_ca3d1f3c97129f4ba8d8f2af6566f4e0" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Royal Elephant Camp</div>`)[0];
+                popup_f4eb0efa8fd7b51fc94ae4d9d26068ca.setContent(html_ca3d1f3c97129f4ba8d8f2af6566f4e0);
+            
+        
+
+        circle_marker_47b1e8b909370dd9b739ecb683c06d1e.bindPopup(popup_f4eb0efa8fd7b51fc94ae4d9d26068ca)
+        ;
+
+        
+    
+    
+            var circle_marker_74c0acdf8213eb3f3c3b1c6e3f63b80a = L.circleMarker(
+                [20.8074191, 95.2442013],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_da9d7a95815793f3163c90f353d25604);
+        
+    
+        var popup_6bac30511540f1b995a28e9aaa1203c7 = L.popup({
+  "maxWidth": 800,
+});
+
+        
+            
+                var html_9ec784f58a9d2aabf97def4145fb93cd = $(`<div id="html_9ec784f58a9d2aabf97def4145fb93cd" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Kyatmauktaung Dam's Scenic View Point</div>`)[0];
+                popup_6bac30511540f1b995a28e9aaa1203c7.setContent(html_9ec784f58a9d2aabf97def4145fb93cd);
+            
+        
+
+        circle_marker_74c0acdf8213eb3f3c3b1c6e3f63b80a.bindPopup(popup_6bac30511540f1b995a28e9aaa1203c7)
+        ;
+
+        
+    
+    
+            var circle_marker_20c5495d51a25e7b32f15d06f8e8be9c = L.circleMarker(
+                [20.8516838, 95.1588157],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_da9d7a95815793f3163c90f353d25604);
+        
+    
+        var popup_fe5b126999b9bdd96894b453fb135702 = L.popup({
+  "maxWidth": 800,
+});
+
+        
+            
+                var html_a0591006ae168f8776a5fda08a4b0509 = $(`<div id="html_a0591006ae168f8776a5fda08a4b0509" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Taung Nauk Taung</div>`)[0];
+                popup_fe5b126999b9bdd96894b453fb135702.setContent(html_a0591006ae168f8776a5fda08a4b0509);
+            
+        
+
+        circle_marker_20c5495d51a25e7b32f15d06f8e8be9c.bindPopup(popup_fe5b126999b9bdd96894b453fb135702)
+        ;
+
+        
+    
+    
+            var circle_marker_95b339bc536dfe22f1baacfa82e7134d = L.circleMarker(
+                [20.8981179, 95.1895692],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_da9d7a95815793f3163c90f353d25604);
+        
+    
+        var popup_9337ffd9dca0739a3923f94e35a46f2f = L.popup({
+  "maxWidth": 800,
+});
+
+        
+            
+                var html_16f05c8ec0ab9760e44f733c02dc8e21 = $(`<div id="html_16f05c8ec0ab9760e44f733c02dc8e21" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Popa Tuff</div>`)[0];
+                popup_9337ffd9dca0739a3923f94e35a46f2f.setContent(html_16f05c8ec0ab9760e44f733c02dc8e21);
+            
+        
+
+        circle_marker_95b339bc536dfe22f1baacfa82e7134d.bindPopup(popup_9337ffd9dca0739a3923f94e35a46f2f)
+        ;
+
+        
+    
+    
+            var circle_marker_988d253748f9e2ba488a7dde1cb1de48 = L.circleMarker(
+                [20.9561642, 95.2440098],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_da9d7a95815793f3163c90f353d25604);
+        
+    
+        var popup_f542ede11dac819772c2a68e39da660e = L.popup({
+  "maxWidth": 800,
+});
+
+        
+            
+                var html_c5bc20ae9193bf3232e3c310ef8418c7 = $(`<div id="html_c5bc20ae9193bf3232e3c310ef8418c7" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Taungpaw Myauk Village View Point</div>`)[0];
+                popup_f542ede11dac819772c2a68e39da660e.setContent(html_c5bc20ae9193bf3232e3c310ef8418c7);
+            
+        
+
+        circle_marker_988d253748f9e2ba488a7dde1cb1de48.bindPopup(popup_f542ede11dac819772c2a68e39da660e)
+        ;
+
+        
+    
+    
+            var circle_marker_9ee415cf621000c335c6c93486ca831e = L.circleMarker(
+                [20.9610619, 95.2499282],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_da9d7a95815793f3163c90f353d25604);
+        
+    
+        var popup_efd5e0516ee5cdc0022b8d4fcdc33d03 = L.popup({
+  "maxWidth": 800,
+});
+
+        
+            
+                var html_8e2963ab19f01563060556b46b8771f2 = $(`<div id="html_8e2963ab19f01563060556b46b8771f2" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Myauktaw Village View Point</div>`)[0];
+                popup_efd5e0516ee5cdc0022b8d4fcdc33d03.setContent(html_8e2963ab19f01563060556b46b8771f2);
+            
+        
+
+        circle_marker_9ee415cf621000c335c6c93486ca831e.bindPopup(popup_efd5e0516ee5cdc0022b8d4fcdc33d03)
+        ;
+
+        
+    
+    
+            var circle_marker_75440e813639cc418ce196cbbca8fe73 = L.circleMarker(
+                [20.9959411, 95.2605668],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_da9d7a95815793f3163c90f353d25604);
+        
+    
+        var popup_ce84028ab10e0202555f732e958571df = L.popup({
+  "maxWidth": 800,
+});
+
+        
+            
+                var html_0f03eb9e286770b61f578504a043f6ea = $(`<div id="html_0f03eb9e286770b61f578504a043f6ea" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Augite - Andesite Volcanic Stones</div>`)[0];
+                popup_ce84028ab10e0202555f732e958571df.setContent(html_0f03eb9e286770b61f578504a043f6ea);
+            
+        
+
+        circle_marker_75440e813639cc418ce196cbbca8fe73.bindPopup(popup_ce84028ab10e0202555f732e958571df)
+        ;
+
+        
+    
+    
+            var circle_marker_711dc536b51fee7f0e86f72ec65357b6 = L.circleMarker(
+                [20.9579526, 95.2948445],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(feature_group_da9d7a95815793f3163c90f353d25604);
+        
+    
+        var popup_ec9913efa338f77dab98deef6859ed15 = L.popup({
+  "maxWidth": 800,
+});
+
+        
+            
+                var html_e7408c6872eb325266fbebb0d94fb829 = $(`<div id="html_e7408c6872eb325266fbebb0d94fb829" style="width: 100.0%; height: 100.0%;"><b>Name:</b> Pyroclastic Flow</div>`)[0];
+                popup_ec9913efa338f77dab98deef6859ed15.setContent(html_e7408c6872eb325266fbebb0d94fb829);
+            
+        
+
+        circle_marker_711dc536b51fee7f0e86f72ec65357b6.bindPopup(popup_ec9913efa338f77dab98deef6859ed15)
+        ;
+
+        
+    
+    
+            feature_group_da9d7a95815793f3163c90f353d25604.addTo(map_f709ba9beacba81d67a36d9e29d6e3ac);
+        
+    
+            var feature_group_da9d7a95815793f3163c90f353d25604searchControl = new L.Control.Search({
+                layer: feature_group_da9d7a95815793f3163c90f353d25604,
+                
+                propertyName: 'No',
+                
+                collapsed: false,
+                textPlaceholder: 'Search location...',
+                position:'topleft',
+            
+                initial: false,
+                
+                hideMarkerOnCollapse: true
+            
+                });
+                feature_group_da9d7a95815793f3163c90f353d25604searchControl.on('search:locationfound', function(e) {
+                    feature_group_da9d7a95815793f3163c90f353d25604.setStyle(function(feature){
+                        return feature.properties.style
+                    })
+                    
+                    if(e.layer._popup)
+                        e.layer.openPopup();
+                })
+                feature_group_da9d7a95815793f3163c90f353d25604searchControl.on('search:collapsed', function(e) {
+                        feature_group_da9d7a95815793f3163c90f353d25604.setStyle(function(feature){
+                            return feature.properties.style
+                    });
+                });
+            map_f709ba9beacba81d67a36d9e29d6e3ac.addControl( feature_group_da9d7a95815793f3163c90f353d25604searchControl );
+
+        
+    
+            var layer_control_5b2e628126b2c8ccc5791c8ba2b0a34e_layers = {
+                base_layers : {
+                    "Satellite" : tile_layer_22dbfe631d80c973ca742d41e8498d40,
+                    "openstreetmap" : tile_layer_38c922d12fea3fd0596a11a51cd4ddbf,
+                },
+                overlays :  {
+                    "Points" : feature_group_da9d7a95815793f3163c90f353d25604,
+                },
+            };
+            let layer_control_5b2e628126b2c8ccc5791c8ba2b0a34e = L.control.layers(
+                layer_control_5b2e628126b2c8ccc5791c8ba2b0a34e_layers.base_layers,
+                layer_control_5b2e628126b2c8ccc5791c8ba2b0a34e_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": true,
+  "autoZIndex": true,
+}
+            ).addTo(map_f709ba9beacba81d67a36d9e29d6e3ac);
+
+        
+</script>
+</html>
